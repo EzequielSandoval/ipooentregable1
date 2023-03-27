@@ -123,10 +123,11 @@ do {
         case 2:
             echo "Ingresar el numero de persona a modificar: ";
             $numeroPersona = trim(fgets(STDIN));
+            $numeroPersona = $numeroPersona - 1;
             echo "*************** SELECCIONAR OPCION: ***************\n";
-            echo "[1]Modificar el Nombre: (actual: " . $datosPasajeroActual[$numeroPersona] . ")\n";
-            echo "[2]Modificar el Apellido: (actual: " . $datosPasajeroActual[$numeroPersona] . ")\n";
-            echo "[3]Modificar el DNI: (actual: " . $datosPasajeroActual[$numeroPersona] . ")";
+            echo "[1]Modificar el Nombre: (actual: " . $datosPasajeroActual[$numeroPersona]["nombre"] . ")\n";
+            echo "[2]Modificar el Apellido: (actual: " . $datosPasajeroActual[$numeroPersona]["apellido"] . ")\n";
+            echo "[3]Modificar el DNI: (actual: " . $datosPasajeroActual[$numeroPersona]["dni"] . ")\n";
             $opcionModificacionPersona = trim(fgets(STDIN));
             switch ($opcionModificacionPersona) {
 
@@ -148,8 +149,8 @@ do {
             }
             break;
         case 3:
-            echo "*********************************************************\n";
-            echo "****DATOS DEL VIAJE: ****\n";
+            echo "*************** DATOS DEL VIAJE: ************************\n";
+            echo "**** ****\n";
             echo "CODIGO DEL VIAJE: " . $viaje->getCodigoViaje() . "\n";
             echo "DESTINO: " . $viaje->getDestinoViaje() . "\n";
             echo "CANTIDAD DE PASAJEROS: " . $viaje->getMaxPasajeros() . "\n";
