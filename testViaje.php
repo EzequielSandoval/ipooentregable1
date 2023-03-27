@@ -109,14 +109,13 @@ do {
                         $nuevosPasajeros = solicitarDatosPasajero($nuevaCantidad);
                         $arrayAntiguo = $viaje->getPasajeros();
 
-                        $arrayDePasajeros = [];
+
                         echo "antiguo: ";
                         print_r($arrayAntiguo);
-                        array_push($arrayDePasajeros, $arrayAntiguo, $nuevosPasajeros);
+                        $arrayDePasajeros =  array_merge($arrayAntiguo, $nuevosPasajeros);
                         $viaje->setPasajeros($arrayDePasajeros);
                         echo "nuevo: ";
                         print_r($viaje->getPasajeros());
-                        // terminar aqui
                     }
                     break;
             }
