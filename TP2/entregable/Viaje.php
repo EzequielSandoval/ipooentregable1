@@ -6,17 +6,18 @@ class Viaje
     private $codigoViaje;
     private $destinoViaje;
     private $cantMaxPasajeros;
-    private $pasajeros = [];
+    private $pasajeros;
+    private $responsable;
 
 
-
-    public function __construct($codigoViaje, $destinoViaje, $cantMaxPasajeros, $pasajeros)
+    public function __construct($codigoViaje, $destinoViaje, $cantMaxPasajeros, $pasajeros, $responsable)
     // Metodo constructor 
     {
         $this->codigoViaje = $codigoViaje;
         $this->destinoViaje = $destinoViaje;
         $this->cantMaxPasajeros = $cantMaxPasajeros;
         $this->pasajeros = $pasajeros;
+        $this->responsable = $responsable;
     }
 
     // retorna el codigo del viaje
@@ -35,10 +36,16 @@ class Viaje
         return $this->cantMaxPasajeros;
     }
     // retorna los datos de los pasajeros del viaje del viaje
-    public function get_Pasajeros()
+    public function get_Objpasajeros()
     {
         return $this->pasajeros;
     }
+    // retorna los datos de los pasajeros del viaje del viaje
+    public function get_Responsable()
+    {
+        return $this->responsable;
+    }
+
 
 
     // asignar el codigo del viaje  al atributo
@@ -57,7 +64,7 @@ class Viaje
         $this->cantMaxPasajeros = $cantMaxPasajeros;
     }
     // asignar nuevos pasajeros
-    public function set_Pasajeros($arrayPasajeros)
+    public function set_Objpasajeros($arrayPasajeros)
     {
         $this->pasajeros = $arrayPasajeros;
     }
@@ -66,22 +73,29 @@ class Viaje
     {
         $this->pasajeros[$numeroPasajero][$tipoDato] = $valorTipodato;
     }
+    // asignar nuevos pasajeros
+    public function set_Responsable($responsable)
+    {
+        $this->responsable = $responsable;
+    }
 
     public function __toString()
     {
         $cadena = "";
-        for ($i = 0; $i < count($this->get_Pasajeros()); $i++) {
-            $cadena = "******************PASAJERO [" . $i+1 . "] ****************** \n"
-                . "NOMBRE: " . $this->get_Pasajeros()[$i]["nombre"] . "\n"
-                . "APELLIDO: " . $this->get_Pasajeros()[$i]["apellido"] . "\n"
-                . "DNI: " . $this->get_Pasajeros()[$i]["dni"] . "\n" .
-                "************************************************* \n" . $cadena;
+        for ($i = 0; $i < count($this->get_Objpasajeros()); $i++) {
+            $cadena = "******************PASAJERO [" . $i + 1 . "] ****************** \n"
+                . "NOMBRE: " . $this->get_Objpasajeros()[$i]->get_nombre() . "\n" 
+                . "APELLIDO: ". $this->get_Objpasajeros()[$i]->get_apellido() . "\n"
+                . "DNI: ".$this->get_Objpasajeros()[$i]->get_dni() . "\n"
+                . "TELEFONO: ".$this->get_Objpasajeros()[$i]->get_telefono() . "\n". $cadena;
         }
         return  "*************** DATOS DEL VIAJE: ****************\n" .
             "CODIGO DEL VIAJE: " . $this->get_CodigoViaje() . "\n" .
             "DESTINO: " . $this->get_DestinoViaje() . "\n" .
             "CANTIDAD DE PASAJEROS: " . $this->get_MaxPasajeros() . "\n" .
+            "RESPONSABLE: " . $this->get_Responsable()->get_nombreResponsable() . "\n" .
             "*************************************************\n" .
             $cadena;
     }
 }
+
