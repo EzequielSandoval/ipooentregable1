@@ -138,9 +138,9 @@ do {
                     if ($nuevaCantidad > $cantidadAntigua) {
                         $nuevaCantidad = $nuevaCantidad - $cantidadAntigua;
                         $nuevosPasajeros = solicitarDatosPasajero($nuevaCantidad);
-                        $arrayAntiguo = $viaje->get_Pasajeros();
+                        $arrayAntiguo = $coleccionPersonas;
                         $arrayDePasajeros =  array_merge($arrayAntiguo, $nuevosPasajeros);
-                        $viaje->set_Pasajeros($arrayDePasajeros);
+                        $viaje->set_Objpasajeros($arrayDePasajeros);
                     }
                     break;
             }
