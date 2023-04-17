@@ -17,7 +17,7 @@ class Pasajeros
         $this->telefono = $telefono;
     }
 
-
+    // Funciones de retorno
 
     public function get_nombre()
     {
@@ -37,7 +37,7 @@ class Pasajeros
         return $this->telefono;
     }
 
-
+    // funciones de seteo de datos
 
     public function set_nombre($nombre)
     {
@@ -56,7 +56,7 @@ class Pasajeros
         $this->telefono = $telefono;
     }
 
-
+    // Retorno de datos por pantalla
     public function __toString()
     {
         $datosPasajero = "NOMBRE: " . $this->get_nombre() . "\n" .

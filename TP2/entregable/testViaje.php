@@ -39,7 +39,7 @@ function solicitarDatosPasajero($cantPasajeros)
     $telefonoPasajero = "";
     $dniPasajero = 0;
     $contCant = 1;
-    $dniRepetido = false; // bandera
+
     $arrayPersonas = [];
     do {
         echo "Nombre: ";
@@ -50,14 +50,16 @@ function solicitarDatosPasajero($cantPasajeros)
         $dniPasajero = trim(fgets(STDIN));
         echo "TELEFONO: ";
         $telefonoPasajero = trim(fgets(STDIN));
-
-        for ($i = 0; $i < count($arrayPersonas); $i++) {
+        $dniRepetido = false; // bandera
+        $i = 0;
+        while ($i < count($arrayPersonas) && !$dniRepetido) {
             if ($dniPasajero === $arrayPersonas[$i]->get_dni()) {
                 echo "Este pasajero con este dni ya esta cargado\n";
                 $dniRepetido = true; // bandera
-                break;
             }
+            $i++;
         }
+
         if (!$dniRepetido) {
             array_push($arrayPersonas, new Pasajeros($nombrePasajero, $apellidoPasajero, $dniPasajero, $telefonoPasajero));
             $contCant++;
