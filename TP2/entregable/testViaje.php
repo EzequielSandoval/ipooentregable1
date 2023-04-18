@@ -19,6 +19,8 @@ $nuevoApellido = "";
 $nuevoDni = "";
 $datosPasajeroActual = [];
 $nuevosPasajeros = [];
+
+$arrayPersonas = [];
 $numEmpleado = 0;
 $numLicencia = "";
 $nombreResponsable = "";
@@ -29,7 +31,7 @@ $apellidoResponsable = "";
  * @param int $cantPasajeros
  * @param array $arrayPersonas
  */
-function solicitarDatosPasajero($cantPasajeros)
+function solicitarDatosPasajero($cantPasajeros, $coleccionObjetosPersonas)
 {
     // int $contCant
     // string $nombrePasajero, $apellidoPasajero, $dniPasajero
@@ -40,7 +42,7 @@ function solicitarDatosPasajero($cantPasajeros)
     $dniPasajero = 0;
     $contCant = 1;
 
-    $arrayPersonas = [];
+    // $arrayPersonas = [];
     do {
         echo "Nombre: ";
         $nombrePasajero = trim(fgets(STDIN));
@@ -52,8 +54,8 @@ function solicitarDatosPasajero($cantPasajeros)
         $telefonoPasajero = trim(fgets(STDIN));
         $dniRepetido = false; // bandera
         $i = 0;
-        while ($i < count($arrayPersonas) && !$dniRepetido) {
-            if ($dniPasajero === $arrayPersonas[$i]->get_dni()) {
+        while ($i < count($coleccionObjetosPersonas) && !$dniRepetido) {
+            if ($dniPasajero == $coleccionObjetosPersonas[$i]->get_dni()) {
                 echo "Este pasajero con este dni ya esta cargado\n";
                 $dniRepetido = true; // bandera
             }
@@ -61,11 +63,11 @@ function solicitarDatosPasajero($cantPasajeros)
         }
 
         if (!$dniRepetido) {
-            array_push($arrayPersonas, new Pasajeros($nombrePasajero, $apellidoPasajero, $dniPasajero, $telefonoPasajero));
+            array_push($coleccionObjetosPersonas, new Pasajeros($nombrePasajero, $apellidoPasajero, $dniPasajero, $telefonoPasajero));
             $contCant++;
         }
     } while ($contCant <= $cantPasajeros);
-    return $arrayPersonas;
+    return $coleccionObjetosPersonas;
 }
 /**
  * Seleccionar una opcion
@@ -103,7 +105,7 @@ echo "--------------------------------------\n";
 echo "Ingresar la cantidad de pasajeros: ";
 $cantidadPasajeros = trim(fgets(STDIN));
 echo "Cargar datos del pasajero: \n";
-$coleccionPersonas = solicitarDatosPasajero($cantidadPasajeros);
+$coleccionPersonas = solicitarDatosPasajero($cantidadPasajeros, $arrayPersonas);
 
 $responsable = new ResponsableV($nombreResponsable, $apellidoResponsable, $numEmpleado, $numLicencia);
 $viaje = new Viaje($codigo, $destino, $cantidadPasajeros, $coleccionPersonas, $responsable);
@@ -136,11 +138,12 @@ do {
                     $cantidadAntigua = $viaje->get_MaxPasajeros();
                     $viaje->set_MaxPasajeros($nuevaCantidad);
                     if ($nuevaCantidad > $cantidadAntigua) {
-                        $nuevaCantidad = $nuevaCantidad - $cantidadAntigua;
-                        $nuevosPasajeros = solicitarDatosPasajero($nuevaCantidad);
                         $arrayAntiguo = $coleccionPersonas;
-                        $arrayDePasajeros =  array_merge($arrayAntiguo, $nuevosPasajeros);
-                        $viaje->set_Objpasajeros($arrayDePasajeros);
+                        $nuevaCantidad = $nuevaCantidad - $cantidadAntigua;
+                        $nuevosPasajeros = solicitarDatosPasajero($nuevaCantidad, $arrayAntiguo);
+                        // $arrayDePasajeros =  array_merge($arrayAntiguo, $nuevosPasajeros);
+                        print_r($nuevosPasajeros);
+                        $viaje->set_Objpasajeros($nuevosPasajeros);
                     }
                     break;
             }
