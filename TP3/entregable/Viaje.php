@@ -7,8 +7,6 @@ class Viaje
     private $destinoViaje;
     private $cantMaxPasajeros;
     private $pasajeros;
-    // private $pasajerosVip;
-    // private $pasajerosEspeciales;
     private $responsable;
     private $costoViaje;
     private $sumaCostos;
@@ -22,8 +20,7 @@ class Viaje
         $this->responsable = $responsable;
         $this->costoViaje = $costoViaje;
         $this->sumaCostos = $sumaCostos;
-        // $this->pasajerosVip = $pasajerosVip;
-        // $this->pasajerosEspeciales = $pasajerosEspeciales;
+   
     }
 
     // retorna el codigo del viaje
@@ -46,14 +43,7 @@ class Viaje
     {
         return $this->pasajeros;
     }
-    // public function get_ObjpasajerosVip()
-    // {
-    //     return $this->pasajerosVip;
-    // }
-    // public function get_ObjpasajerosEspeciales()
-    // {
-    //     return $this->pasajerosEspeciales;
-    // }
+   
     // retorna los datos de los pasajeros del viaje del viaje
     public function get_Responsable()
     {
@@ -94,14 +84,8 @@ class Viaje
     {
         $this->pasajeros = $arrayPasajeros;
     }
-    // public function set_ObjpasajerosVip($pasajerosVip)
-    // {
-    //     $this->pasajerosVip = $pasajerosVip;
-    // }
-    // public function set_ObjpasajerosEspeciales($pasajerosEspeciales)
-    // {
-    //     $this->pasajerosEspeciales = $pasajerosEspeciales;
-    // }
+
+ 
     // asignar los datos de los pasajeros del viaje del viaje al atributo
     public function set_DatosPasajeros($numeroPasajero, $tipoDato, $valorTipodato)
     {
@@ -134,7 +118,6 @@ class Viaje
 
     public function venderPasaje($Objpasajero, $tipoPasajero, $porcIncremento)
     {
-        // if ($Objpasajero["PasajerosComunes"]) {
         $pasajeDisponible = $this->hayPasajesDisponibles();
         if ($pasajeDisponible) {
             if ($tipoPasajero == "PasajerosComunes") {
@@ -169,24 +152,6 @@ class Viaje
         return $costoFinal;
     }
 
-
-
-    // if ($pasajeDisponible) {
-
-
-
-    //     // $coleccionPasajeros[] = $Objpasajero;
-    //     // $this->set_Objpasajeros($coleccionPasajeros);
-    //     $costoViaje = $this->get_costoViaje();
-    //     $sumaCostos = $this->get_sumaCostos();
-    //     $this->set_sumaCostos($sumaCostos + $costoViaje);
-    //     for ($i = 0; $i < count($coleccionPasajeros); $i++) {
-    //         $pasajero = $coleccionPasajeros[$i];
-    //         // if () {
-    //         //     # code...
-    //         // }
-    //     }
-    // }
 
 
 

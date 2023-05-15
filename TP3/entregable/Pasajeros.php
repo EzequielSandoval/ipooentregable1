@@ -88,10 +88,7 @@ class Pasajeros
         $this->incremento = $incremento;
     }
 
-    // public function get_incremento()
-    // {
-    //     return $this->incremento;
-    // }
+
     public function darPorcentajeIncremento()
     {
         return $this->incremento;
